@@ -1,6 +1,8 @@
 # Project 1
 # Jonathan Vialpando and Arturo Nunez Gomez
 
+# Problem 1.
+
 # Input: Two integers p and q with p >= q >= 0
 # Output: gcd(p,q)
 # Pre-condition of input: p >= q >= 0
@@ -33,7 +35,8 @@ def reduceFraction(p,q):
 # Output:
 # Pre-condition of input:
 # Pseudo Code:
-#def add(p1, q1, p2, q2)
+#def add(p1, q1, p2, q2):
+
 
 # Input:
 # Output:
@@ -53,11 +56,23 @@ def reduceFraction(p,q):
 # Pseudo Code:
 #def divide(p1, q1, p2, q2)
 
-# Input:
-# Output:
-# Pre-condition of input:
+# Input: Two fractions represented by (p1/p2) and (q1/q2)
+# Output: True if (p1/q1) = (p2/q2), and False if not
+# Pre-condition of input: q1 and q2 are not equal to 0
 # Pseudo Code:
-#def isEqual(p1, q1, p2, q2):
+#   reduce equals reduceFraction(p1,q1)
+#   reduce2 equals reduceFraction(p2,q2)
+#   if reduce is equal to reduce 2
+#       return true
+#   else
+#       return false
+def isEqual(p1, q1, p2, q2):
+    reduce = reduceFraction(p1,q1)
+    reduce2 = reduceFraction(p2,q2)
+    if reduce == reduce2:
+        return True
+    else:
+        return False
 
 # Input: Two fractions represented by (p1/p2) and (q1/q2)
 # Output: True if (p1/q1) < (p2/q2), and False if not
@@ -91,8 +106,3 @@ def isLess(p1, q1, p2, q2):
 
 if __name__ == '__main__':
     print("gcd")
-    reduced = reduceFraction(14,32)
-    print (reduced)
-    is_less = isLess(3,4,1,2)
-    print (is_less)
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
