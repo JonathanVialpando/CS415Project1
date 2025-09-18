@@ -1,78 +1,16 @@
-# Project 1
-# Jonathan Vialpando and Arturo Nunez Gomez
+# This is a sample Python script.
 
-# PROBLEM 1.)
-
-# Input:
-# Output:
-# Relations between input and output:
-# Pre-conditions for input:
-# Pseudo-code:
-#def gcd(a,b)
-
-# Input:
-# Output:
-# Relations between input and output:
-# Pre-conditions for input:
-# Pseudo-code:
-#def reduceFraction(p,q)
-
-# Input:
-# Output:
-# Relations between input and output:
-# Pre-conditions for input:
-# Pseudo-code:
-#def addition(p1, q1, p2, q2):
-
-# Input:
-# Output:
-# Relations between input and output:
-# Pre-conditions for input:
-# Pseudo-code:
-#def subtraction(p1, q1, p2, q2):
-
-# Input:
-# Output:
-# Relations between input and output:
-# Pre-conditions for input:
-# Pseudo-code:
-#def multiplication(p1, q1, p2, q2):
-
-# Input:
-# Output:
-# Relations between input and output:
-# Pre-conditions for input:
-# Pseudo-code:
-#def division(p1, q1, p2, q2):
-
-# Input:
-# Output:
-# Relations between input and output:
-# Pre-conditions for input:
-# Pseudo-code:
-#def isEqual(p1, q1, p2, q2):
-
-# Input:
-# Output:
-# Relations between input and output:
-# Pre-conditions for input:
-# Pseudo-code:
-#def isLess(p1, q1, p2, q2):
-
-# Input:
-# Output:
-# Relations between input and output:
-# Pre-conditions for input:
-# Pseudo-code:
-#def digitOfFraction(p, q, n):
-
-# Input:
-# Output:
-# Relations between input and output:
-# Pre-conditions for input:
-# Pseudo-code:
-#def hsum(n,m):
+# Press ⌃R to execute it or replace it with your code.
+# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 
 
+def print_hi(name):
+    # Use a breakpoint in the code line below to debug your script.
+    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+
+
+# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print("Hello World")
+    print_hi('PyCharm')
+
+# See PyCharm help at https://www.jetbrains.com/help/pycharm/
