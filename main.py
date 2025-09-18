@@ -15,11 +15,19 @@ def gcd(p,q):
     else:
         return gcd(q, p % q)
 
-# Input:
-# Output:
-# Pre-condition of input:
+# Input: Two integers p and q which represent the numerator and denominator in a fraction
+# Output: Two integers p and q which represent the reduced numerator and denominator in a fraction
+# Pre-condition of input: Denominator does not already = 0
 # Pseudo Code:
-#def reduceFraction(p,q)
+#   new gcd equals gcd(p,q)
+#   newP equals p floor newGcd
+#   newQ equals q floor newGcd
+#   return newP and newQ
+def reduceFraction(p,q):
+    newGcd = gcd(p,q)
+    newP =  p // newGcd
+    newQ = q // newGcd
+    return newP,newQ
 
 # Input:
 # Output:
@@ -49,14 +57,22 @@ def gcd(p,q):
 # Output:
 # Pre-condition of input:
 # Pseudo Code:
-#def isEqual(p1, q1, p2, q2)
+#def isEqual(p1, q1, p2, q2):
 
-# Input:
-# Output:
-# Pre-condition of input:
+# Input: Two fractions represented by (p1/p2) and (q1/q2)
+# Output: True if (p1/q1) < (p2/q2), and False if not
+# Pre-condition of input: q1 and q2 are not equal to 0
 # Pseudo Code:
-#def isLess(p1, q1, p2, q2)
+#   if p1 * q2 < p2 * q1
+#       return true
+#   else
+#       return false
 
+def isLess(p1, q1, p2, q2):
+    if p1 * q2 < p2 * q1:
+        return True
+    else:
+        return False
 # Input:
 # Output:
 # Pre-condition of input:
@@ -74,7 +90,9 @@ def gcd(p,q):
 
 
 if __name__ == '__main__':
-    gcd = gcd(1035,759)
-    print(gcd)
-
+    print("gcd")
+    reduced = reduceFraction(14,32)
+    print (reduced)
+    is_less = isLess(3,4,1,2)
+    print (is_less)
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
