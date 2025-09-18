@@ -31,30 +31,63 @@ def reduceFraction(p,q):
     newQ = q // newGcd
     return newP,newQ
 
-# Input:
-# Output:
-# Pre-condition of input:
+# Input: 4 integers p1, q1, p2 and q2 which represent the numerators and denominators in a fraction(p1/q1 and p2/q2)
+# Output: Two integers p and q that represent the sum of (p1,q1) + (p2,q2)
+# Pre-condition of input: Denominators do not already = 0
 # Pseudo Code:
-#def add(p1, q1, p2, q2):
+#   denominator equals q1 * q2
+#   numerator equals (p1 * q2) + (p2 * q1)
+#   reduced equals reduceFraction(numerator,denominator)
+#   return reduced
+def add(p1, q1, p2, q2):
+    denominator = q1 * q2
+    numerator = (p1 * q2) + (p2 * q1)
+    reduced = reduceFraction(numerator,denominator)
+    return reduced
 
 
-# Input:
-# Output:
-# Pre-condition of input:
+# Input: 4 integers p1, q1, p2 and q2 which represent the numerators and denominators in a fraction(p1/q1 and p2/q2)
+# Output: Two integers p and q that represent the difference of (p1,q1) - (p2,q2)
+# Pre-condition of input: Denominators do not already = 0
 # Pseudo Code:
-#def subtract(p1, q1, p2, q2)
+#   denominator equals q1 * q2
+#   numerator equals (p1 * q2) - (p2 * q1)
+#   reduced equals reduceFraction(numerator, denominator)
+#   return reduced
+def subtract(p1, q1, p2, q2):
+    denominator = q1 * q2
+    numerator = (p1 * q2) - (p2 * q1)
+    reduced = reduceFraction(numerator, denominator)
+    return reduced
 
-# Input:
-# Output:
-# Pre-condition of input:
+# Input: 4 integers p1, q1, p2 and q2 which represent the numerators and denominators in a fraction(p1/q1 and p2/q2)
+# Output: Two integers p and q that represent the product of (p1,q1) * (p2,q2)
+# Pre-condition of input: Denominators do not already = 0
 # Pseudo Code:
-#def multiply(p1, q1, p2, q2)
+#   denominator equals q1 * q2
+#   numerator equals p1 * p2
+#   reduced equals reduceFraction(numerator,denominator)
+#   return reduced
+def multiply(p1, q1, p2, q2):
+    denominator = q1 * q2
+    numerator = p1 * p2
+    reduced = reduceFraction(numerator,denominator)
+    return reduced
 
-# Input:
-# Output:
-# Pre-condition of input:
+# Input: 4 integers p1, q1, p2 and q2 which represent the numerators and denominators in a fraction(p1/q1 and p2/q2)
+# Output: Two integers p and q that represent the quotient of (p1,q1) / (p2,q2)
+# Pre-condition of input: Denominators do not already = 0
 # Pseudo Code:
-#def divide(p1, q1, p2, q2)
+#   denominator equals q1 * p2
+#   numerator equals q2 * p1
+#   reduced equals reduceFraction(numerator,denominator)
+#   return reduced
+def divide(p1, q1, p2, q2):
+    denominator = q1 * p2
+    numerator = q2 * p1
+    reduced = reduceFraction(numerator,denominator)
+    return reduced
+
 
 # Input: Two fractions represented by (p1/p2) and (q1/q2)
 # Output: True if (p1/q1) = (p2/q2), and False if not
@@ -106,3 +139,11 @@ def isLess(p1, q1, p2, q2):
 
 if __name__ == '__main__':
     print("gcd")
+    added = add(1,2,1,3)
+    print(added)
+    subed = subtract(1,2,1,3)
+    print(subed)
+    mult = multiply(1,2,1,3)
+    print(mult)
+    div = divide(1, 2, 1, 3)
+    print(div)
