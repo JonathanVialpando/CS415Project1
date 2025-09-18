@@ -1,11 +1,19 @@
 # Project 1
 # Jonathan Vialpando and Arturo Nunez Gomez
 
-# Input:
-# Output:
-# Pre-condition of input:
+# Input: Two integers p and q with p >= q >= 0
+# Output: gcd(p,q)
+# Pre-condition of input: p >= q >= 0
 # Pseudo Code:
-#def gcd(a,b)
+#   if q is equal to 0
+#       return p
+#   else
+#       return gcd (q, p mod q)
+def gcd(p,q):
+    if q == 0:
+        return p
+    else:
+        return gcd(q, p % q)
 
 # Input:
 # Output:
@@ -66,6 +74,7 @@
 
 
 if __name__ == '__main__':
-    print('PyCharm')
+    gcd = gcd(1035,759)
+    print(gcd)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
