@@ -127,11 +127,11 @@ def isLess(p1, q1, p2, q2):
 # Pre-condition of input: n > 0, p >= q >= 0
 # Pseudo Code:
 #   remainder = p mod q
-#   for loop with n reducing by 1
+#   while loop
 #   remainder = remainder * 10
 #   digit = floor of remainder divided by q
 #   remainder = remainder mod q
-#   end of for loop
+#   end of while loop
 #   return digit
 def digitOfFraction(p, q, n):
     remainder = p % q
@@ -143,11 +143,26 @@ def digitOfFraction(p, q, n):
         count = count + 1
     return digit
 
-# Input:
-# Output:
-# Pre-condition of input:
+# Input: Two integers n and m
+# Output: m-th digit in the decimal expansion of the fraction Hn
+# Pre-condition of input: n and m are positive integers
 # Pseudo Code:
-#def hsum(n ,m)
+#   sum = (0,1)
+#   while loop
+#   sum = add(sum[0],sum[1],1,count)
+#   end of while loop
+#   p = sum[0]
+#   q = sum[1]
+#   return digit_of_fraction(p,q,m)
+def hsum(n ,m):
+    sum = (0,1)
+    count = 0
+    while count < n:
+        sum = add(sum[0], sum[1], 1, count + 1)
+        count = count + 1
+    p = sum[0]
+    q = sum[1]
+    return digitOfFraction(p,q,m)
 
 
 
@@ -163,5 +178,7 @@ if __name__ == '__main__':
     print(mult)
     div = divide(1, 2, 1, 3)
     print(div)
-    n_thDigit = digitOfFraction(1,7,6)
+    n_thDigit = digitOfFraction(1,7,4)
     print(n_thDigit)
+    h_Sum = hsum(8,4)
+    print(h_Sum)
