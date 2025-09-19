@@ -121,11 +121,27 @@ def isLess(p1, q1, p2, q2):
         return True
     else:
         return False
-# Input:
-# Output:
-# Pre-condition of input:
+    
+# Input: Single fraction represented by (p/q) and n represents the n-th digit to be returned
+# Output: n-th digit after the decimal point
+# Pre-condition of input: n > 0, p >= q >= 0
 # Pseudo Code:
-#def digitOfFraction(p, q, n)
+#   remainder = p mod q
+#   for loop with n reducing by 1
+#   remainder = remainder * 10
+#   digit = floor of remainder divided by q
+#   remainder = remainder mod q
+#   end of for loop
+#   return digit
+def digitOfFraction(p, q, n):
+    remainder = p % q
+    count = 0
+    while count < n:
+        remainder = remainder * 10
+        digit = remainder // q
+        remainder = remainder % q
+        count = count + 1
+    return digit
 
 # Input:
 # Output:
@@ -147,3 +163,5 @@ if __name__ == '__main__':
     print(mult)
     div = divide(1, 2, 1, 3)
     print(div)
+    n_thDigit = digitOfFraction(1,7,6)
+    print(n_thDigit)
