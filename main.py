@@ -207,9 +207,26 @@ def primality3(N,k):
     else:
         return primality2(N,k)
 
-
 # Problem 3.
-
+# Input: Positive integer N and k
+# Output: A random prime number with N bits
+# Pre-condition of input: N and k are both postive integers
+# Pseudo Code:
+#   generate n random numbers between 0 and 1 to store in binaryNum
+#   add 1s at the start and end of binaryNum
+#   Keep calling primality3 with binaryNum, and K until it returns true
+#   return binaryNum
+def primeNumGenerator(N,K):
+    binaryNum = ''.join(random.choices('01', k = N - 2))
+    newBinaryNum = '1' + binaryNum
+    binaryNum = newBinaryNum + '1'
+    decimal = int(binaryNum, 2)
+    while not primality3(decimal, K):
+        binaryNum = ''.join(random.choices('01', k = N -2))
+        newBinaryNum = '1' + binaryNum
+        binaryNum = newBinaryNum + '1'
+        decimal = int(binaryNum, 2)
+    return decimal
 
 
 
@@ -229,3 +246,5 @@ if __name__ == '__main__':
     print(h_Sum)
     test = primality3(7,5)
     print (test)
+    primeNumber = primeNumGenerator(8,4)
+    print(primeNumber)
