@@ -240,10 +240,8 @@ def primeNumGenerator(N,K):
 #   D = egcd(E, (p-1)(q-1))
 #   return p, q, N, E, D
 def RSAGenerator(N,K):
-    # p = primeNumGenerator(N,K)
-    # q = primeNumGenerator(N,K)
-    p = 13
-    q = 19
+    p = primeNumGenerator(N,K)
+    q = primeNumGenerator(N,K)
     N = p * q
     Egen = ''.join(random.choices('01', k = 10))
     E = int(Egen,2)
@@ -252,6 +250,9 @@ def RSAGenerator(N,K):
         E = int(Egen,2)
 
     return p, q
+## NOT FINISHED: 
+#   need to find D and you find it by doing ecgd(E, (p - 1)(q - 1))
+#   then return p, q, N, E, D
 
 
 if __name__ == '__main__':
