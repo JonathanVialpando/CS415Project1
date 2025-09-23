@@ -242,17 +242,39 @@ def primeNumGenerator(N,K):
 def RSAGenerator(N,K):
     p = primeNumGenerator(N,K)
     q = primeNumGenerator(N,K)
+    while p == q:
+        q = primeNumGenerator(N, K)
     N = p * q
+    ET = (p - 1) * (q - 1)
     Egen = ''.join(random.choices('01', k = 10))
     E = int(Egen,2)
-    while gcd(E,(p-1) * (q - 1)) != 1:
+    while gcd(E, ET) != 1:
         Egen = ''.join(random.choices('01', k = 10))
         E = int(Egen,2)
+    if E > ET:
+        eGCDResult = egcd(E, ET)
+        D = eGCDResult[0]
+        if D < 0:
+            D = ET - abs(D)
+    else:
+        eGCDResult = egcd(ET, E)
+        D = eGCDResult[1]
+        if D < 0:
+            D = ET - abs(D)
+    return p, q, N, E, D
 
-    return p, q
-## NOT FINISHED: 
-#   need to find D and you find it by doing ecgd(E, (p - 1)(q - 1))
-#   then return p, q, N, E, D
+# Input: Two positive integers a and b with a >= b >= 0
+# Output: Integers x,y,d, such that d = gcd(a,b) and ax + by = d
+# Pre-condition of input: a and b are postive integers 
+# Psuedo code:
+#   if b = 0: return (1,0,a)
+#   (x,y,d) = egcd(b, a mod b)
+#   return (y, x - [a/b] * y, d)
+def egcd(a,b):
+    if b == 0:
+        return (1, 0, a)
+    result = egcd(b, a % b)
+    return (result[1], result[0] - a // b * result[1], result[2])
 
 
 if __name__ == '__main__':
@@ -273,4 +295,5 @@ if __name__ == '__main__':
     print (test)
     primeNumber = primeNumGenerator(8,4)
     print(primeNumber)
-    RSA = RSAGenerator(4,3)
+    RSA = RSAGenerator(8,4)
+    print(RSA)
