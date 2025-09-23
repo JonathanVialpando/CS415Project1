@@ -228,6 +228,30 @@ def primeNumGenerator(N,K):
         decimal = int(binaryNum, 2)
     return decimal
 
+# Problem 4.
+# Input: Positive integer N and K
+# Output: p and q are both prime number with n bits, N is p * q, E is gcd(E,(p-1)(q-1)), and D where 2 <= D <= N - 1
+# Pre-condition of input: N and K are both postive integers
+# Pseudo code:
+#   p = primeNumGenerator(N,K)
+#   q = primeNumGenerator(N,K)
+#   N = p * q
+#   E = gcd(Random 10 bit integer, (p-1)(q-1)) until gcd() returns 1
+#   D = egcd(E, (p-1)(q-1))
+#   return p, q, N, E, D
+def RSAGenerator(N,K):
+    # p = primeNumGenerator(N,K)
+    # q = primeNumGenerator(N,K)
+    p = 13
+    q = 19
+    N = p * q
+    Egen = ''.join(random.choices('01', k = 10))
+    E = int(Egen,2)
+    while gcd(E,(p-1) * (q - 1)) != 1:
+        Egen = ''.join(random.choices('01', k = 10))
+        E = int(Egen,2)
+
+    return p, q
 
 
 if __name__ == '__main__':
@@ -248,3 +272,4 @@ if __name__ == '__main__':
     print (test)
     primeNumber = primeNumGenerator(8,4)
     print(primeNumber)
+    RSA = RSAGenerator(4,3)
