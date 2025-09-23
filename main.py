@@ -1,6 +1,7 @@
 # Project 1
 # Jonathan Vialpando and Arturo Nunez Gomez
 import random
+import sys
 
 
 # Problem 1.
@@ -276,6 +277,48 @@ def egcd(a,b):
     result = egcd(b, a % b)
     return (result[1], result[0] - a // b * result[1], result[2])
 
+# Problem 5.
+# Input: Three postive integers M, N, K
+# Output: Encrypted version and decrypted version of M, p, q, N , E, and D where calculated from RSAGenerator(N, K)
+# Pre-condition of input: N and K are both postive integers and M < N
+# Psuedo code:
+#   if M > N:
+#       exit code and say M is bigger than N
+#   RSAValues = RSAGenerator(N,K)
+#   EncryptedMessage = modexp(M, E, N)
+#   DecryptedMessage = modext(EncryptedMessage, D, N)
+#   return RSAValues, M, EncryptedMessage, DecryptedMessage
+def EncryptionDecryption(M, N, K):
+    RSAValues = RSAGenerator(N, K)
+    RSA_N = RSAValues[2]
+    if M > RSA_N:
+        print (M, " is larger than ", RSA_N)
+        sys.exit(1)    
+    E = RSAValues[3]
+    D = RSAValues[4]
+    EncryptedMessage = modexp(M, E, RSA_N)
+    DecryptedMessage = modexp(EncryptedMessage, D, RSA_N)
+    return RSAValues, M, EncryptedMessage, DecryptedMessage
+
+
+# Input: Two n-bit integers x and N, an integer exponemt y
+# Output: x^y mod N
+# Pre-condition of input: z, N and y are all positive integers
+# Psuedo code:
+#   if y = 0: return 1
+#   z = modexp(x, [y/2], N)
+#   if y is even:
+#       return z^2 mod N
+#   else:
+#       return x * x^2 mod N
+def modexp(x,y,N):
+    if y == 0:
+        return 1
+    z = modexp(x, y // 2, N)
+    if y % 2 == 0:
+        return z ** 2 % N
+    else:
+        return x * z ** 2 % N
 
 if __name__ == '__main__':
     print("gcd")
@@ -297,3 +340,5 @@ if __name__ == '__main__':
     print(primeNumber)
     RSA = RSAGenerator(8,4)
     print(RSA)
+    Message = EncryptionDecryption(24, 7, 4)
+    print (Message)
