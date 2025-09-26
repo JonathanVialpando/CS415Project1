@@ -247,6 +247,7 @@ def RSAGenerator(N,K):
         q = primeNumGenerator(N, K)
     N = p * q
     ET = (p - 1) * (q - 1)
+
     Egen = ''.join(random.choices('01', k = 10))
     E = int(Egen,2)
     while gcd(E, ET) != 1:
@@ -298,8 +299,18 @@ def EncryptionDecryption(M, N, K):
     D = RSAValues[4]
     EncryptedMessage = modexp(M, E, RSA_N)
     DecryptedMessage = modexp(EncryptedMessage, D, RSA_N)
-    return RSAValues, M, EncryptedMessage, DecryptedMessage
-
+    print("p: " + str(RSAValues[0]))
+    print("q: " + str(RSAValues[1]))
+    print("n: " + str(RSA_N))
+    print("E: " + str(E))
+    print("D: " + str(D))
+    print("Plain-text message, m: " + str(M))
+    print("Encrypted Message: " + str(EncryptedMessage))
+    print("Decrypted Message: " + str(DecryptedMessage))
+    if M == DecryptedMessage:
+        print("Compare D and M result: yes")
+    else:
+        print("Compare D and M result: no")
 
 # Input: Two n-bit integers x and N, an integer exponemt y
 # Output: x^y mod N
@@ -321,24 +332,34 @@ def modexp(x,y,N):
         return x * z ** 2 % N
 
 if __name__ == '__main__':
-    print("gcd")
-    added = add(1, 2, 1, 3)
-    print(added)
-    subed = subtract(1, 2, 1, 3)
-    print(subed)
-    mult = multiply(1, 2, 1, 3)
-    print(mult)
-    div = divide(1, 2, 1, 3)
-    print(div)
-    n_thDigit = digitOfFraction(1, 7, 4)
-    print(n_thDigit)
-    h_Sum = hsum(15, 5)
-    print(h_Sum)
-    test = primality3(7,5)
-    print (test)
-    primeNumber = primeNumGenerator(8,4)
-    print(primeNumber)
-    RSA = RSAGenerator(8,4)
-    print(RSA)
-    Message = EncryptionDecryption(24, 7, 4)
-    print (Message)
+    choices = "CHOICES: \n1. Problem 1 \n2. Problem 2\n3. Problem 5\n4. Quit"
+    print (choices)
+    answer = input("Which one would like to test(1,2,3 or 4)?")
+    while answer != "4":
+        if answer == "1":
+            print("PROBLEM 1: ")
+            n = int(input("Please enter a positive integer, n: "))
+            m = int(input("Please enter a positive integer, m: "))
+            answer = hsum(n, m)
+            print ("The " + str(m) + "-th digit in the decimal expansion of the fraction H(n) is: " + str(answer))
+        elif answer == "2":
+            print("PROBLEM 2: ")
+            #True if N is a likel prime number and False if N is definitely not
+            n = int(input("Please enter a positive integer, N: "))
+            k = int(input("Please enter a positive integer, k: "))
+            answer = primality3(n,k)
+            if answer == True:
+                print(str(n) + ", is likely a prime number")
+            else:
+                print(str(n) + ", is not a prime number")
+        elif answer == "3":
+            print("PROBLEM 5: ")
+            m = int(input("Please enter a message integer, M: "))
+            n = int(input("Please enter the number of bits for primes, n: "))
+            k = int(input("Please enter the confidence parameter for primality3, k: "))
+            EncryptionDecryption(m,n,k)
+        else:
+            print("Please enter 1,2,5 or quit")
+        print(choices)
+        answer = input("Which one would like to test(1,2,3 or 4)?")
+    print("Exited")
