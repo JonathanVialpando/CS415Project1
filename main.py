@@ -211,7 +211,7 @@ def primality3(N,k):
 # Problem 3.
 # Input: Positive integer N and k
 # Output: A random prime number with N bits
-# Pre-condition of input: N and k are both postive integers
+# Pre-condition of input: N and k are both positive integers
 # Pseudo Code:
 #   generate n random numbers between 0 and 1 to store in binaryNum
 #   add 1s at the start and end of binaryNum
@@ -232,7 +232,7 @@ def primeNumGenerator(N,K):
 # Problem 4.
 # Input: Positive integer N and K
 # Output: p and q are both prime number with n bits, N is p * q, E is gcd(E,(p-1)(q-1)), and D where 2 <= D <= N - 1
-# Pre-condition of input: N and K are both postive integers
+# Pre-condition of input: N and K are both positive integers
 # Pseudo code:
 #   p = primeNumGenerator(N,K)
 #   q = primeNumGenerator(N,K)
@@ -267,8 +267,8 @@ def RSAGenerator(N,K):
 
 # Input: Two positive integers a and b with a >= b >= 0
 # Output: Integers x,y,d, such that d = gcd(a,b) and ax + by = d
-# Pre-condition of input: a and b are postive integers 
-# Psuedo code:
+# Pre-condition of input: a and b are positive integers
+# Pseudo code:
 #   if b = 0: return (1,0,a)
 #   (x,y,d) = egcd(b, a mod b)
 #   return (y, x - [a/b] * y, d)
@@ -279,10 +279,10 @@ def egcd(a,b):
     return (result[1], result[0] - a // b * result[1], result[2])
 
 # Problem 5.
-# Input: Three postive integers M, N, K
+# Input: Three positive integers M, N, K
 # Output: Encrypted version and decrypted version of M, p, q, N , E, and D where calculated from RSAGenerator(N, K)
-# Pre-condition of input: N and K are both postive integers and M < N
-# Psuedo code:
+# Pre-condition of input: N and K are both positive integers and M < N
+# Pseudo code:
 #   if M > N:
 #       exit code and say M is bigger than N
 #   RSAValues = RSAGenerator(N,K)
@@ -312,10 +312,10 @@ def EncryptionDecryption(M, N, K):
     else:
         print("Compare D and M result: no")
 
-# Input: Two n-bit integers x and N, an integer exponemt y
+# Input: Two n-bit integers x and N, an integer exponent y
 # Output: x^y mod N
 # Pre-condition of input: z, N and y are all positive integers
-# Psuedo code:
+# Pseudo code:
 #   if y = 0: return 1
 #   z = modexp(x, [y/2], N)
 #   if y is even:
@@ -344,7 +344,6 @@ if __name__ == '__main__':
             print ("The " + str(m) + "-th digit in the decimal expansion of the fraction H(n) is: " + str(answer))
         elif answer == "2":
             print("PROBLEM 2: ")
-            #True if N is a likel prime number and False if N is definitely not
             n = int(input("Please enter a positive integer, N: "))
             k = int(input("Please enter a positive integer, k: "))
             answer = primality3(n,k)
