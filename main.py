@@ -340,14 +340,14 @@ if __name__ == '__main__':
             print("PROBLEM 1: ")
             n = int(input("Please enter a positive integer, n: "))
             m = int(input("Please enter a positive integer, m: "))
-            answer = hsum(n, m)
-            print ("The " + str(m) + "-th digit in the decimal expansion of the fraction H(n) is: " + str(answer))
+            result = hsum(n, m)
+            print ("The " + str(m) + "-th digit in the decimal expansion of the fraction H(n) is: " + str(result))
         elif answer == "2":
             print("PROBLEM 2: ")
             n = int(input("Please enter a positive integer, N: "))
             k = int(input("Please enter a positive integer, k: "))
-            answer = primality3(n,k)
-            if answer == True:
+            result = primality3(n,k)
+            if result == True:
                 print(str(n) + ", is likely a prime number")
             else:
                 print(str(n) + ", is not a prime number")
@@ -358,7 +358,7 @@ if __name__ == '__main__':
             k = int(input("Please enter the confidence parameter for primality3, k: "))
             EncryptionDecryption(m,n,k)
         else:
-            print("Please enter 1,2,5 or quit")
+            print("Please enter 1,2,3 or 4")
         print(choices)
         answer = input("Which one would like to test(1,2,3 or 4)?")
     print("Exited")
