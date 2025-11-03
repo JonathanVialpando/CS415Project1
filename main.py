@@ -188,9 +188,13 @@ def hsum(n, m):
 #           return false
 #   return True
 def primality2(N,k):
+    if N < 2:
+        return False
+    if N in (2, 3):
+        return True
     for i in range(k):
-        randInt = random.randint(1,N - 1)
-        if (randInt ** (N - 1) % N) != 1:
+        a = random.randint(2, N - 2)
+        if pow(a, N - 1, N) != 1:
             return False
     return True
 
