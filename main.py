@@ -352,9 +352,9 @@ if __name__ == '__main__':
             k = int(input("Please enter a positive integer, k: "))
             result = primality3(n,k)
             if result == True:
-                print(str(n) + ", is likely a prime number")
+                print("yes")
             else:
-                print(str(n) + ", is not a prime number")
+                print("no")
         elif answer == "3":
             print("PROBLEM 5: ")
             m = int(input("Please enter a message integer, M: "))
