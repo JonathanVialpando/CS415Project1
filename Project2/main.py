@@ -2,6 +2,7 @@
 # Jonathan Vialpando and Arturo Nunez Gomez
 import sys
 from PIL import Image
+import heapq
 
 def isVertex(rgb):
     r, g, b = rgb
@@ -72,6 +73,52 @@ def Breadth_First_Search(inputImage, starting, target):
     else:
         return None, visited, []
 
+def heuristic (u,t):
+    p1, p2 = u
+    t1, t2 = t
+    return abs(p1 - t1) + abs(p2 - t2)
+
+def Best_First_Search(inputImage, starting, target):
+    w, h = inputImage.size
+    pix = inputImage.load()
+
+    if not isVertex(pix[starting[1], starting[0]]):
+        raise ValueError("Starting pixel is unreachable")
+    if not isVertex(pix[target[1], target[0]]):
+        raise ValueError("Target pixel is unreachable")
+
+    Q = [(heuristic(starting, target),starting)]
+
+    visited = set()
+    d = {starting:0}
+    prev = {}
+
+
+    while Q:
+        priority, u = heapq.heappop(Q)
+        if u in visited:
+            continue
+        visited.add(u)
+        if u == target:
+            break
+        uRow, uCol = u
+
+        for vRow, vCol in getNeighbors(uRow, uCol, h, w):
+            v = (vRow, vCol)
+            if not isVertex(pix[vCol, vRow]):
+                continue
+            if v not in visited:
+                d[v] = d[u] + 1
+                prev[v] = u
+                f = d[v] + heuristic(v,target)
+                heapq.heappush(Q,(f,v))
+    if target in d:
+        path = reconstructPath(prev,starting,target)
+        return d[target], visited, path
+    else:
+        return None, visited, []
+
+
 if __name__ == '__main__':
     inputImageName = input("Enter input image name: ")
     fileExtension = ".bmp"
@@ -93,17 +140,25 @@ if __name__ == '__main__':
 
     #run both BFS and ASTAR
     bfsDistance, BFSVisited, BFSpath = Breadth_First_Search(inputImage,startingCoordinates,TargetCoordinates)
-    
     if bfsDistance is None:
         print("Not path found for BFS.")
     else:
         print(f"Shortest path found for BFS is: {bfsDistance}") #Ensure Astar is the same distance
+        print(f"Nodes visited by BFS: {len(BFSVisited)}")
+
+    astarDistance, ASTARVisited, ASTARpath = Best_First_Search(inputImage, startingCoordinates,TargetCoordinates)
+    if astarDistance is None:
+        print("No path found for A*")
+    else:
+        print(f"Shortest path found for A*: {astarDistance}")
+        print(f"Nodes visited by A*: {len(ASTARVisited)}")
 
     outputBFSResults = input("Enter the file name for BFS output: ")
     #outputBFSResults = "BFSoutput"
-    #outputASTAR = input("Enter the file name for A* output: ")
-    outputASTAR = "ASTARoutput"
+    outputASTAResults = input("Enter the file name for A* output: ")
+    #outputASTAR = "ASTARoutput"
 
     colorizeResults(inputImage, BFSVisited, BFSpath, outputBFSResults + fileExtension)
     print(f"BFS output saved to {outputBFSResults + fileExtension}")
+    print(f"A* output saved to {outputASTAResults + fileExtension}")
 
