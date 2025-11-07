@@ -94,20 +94,16 @@ def Best_First_Search(inputImage, starting, target):
     prev = {}
 
 
-    while Q:
+    while Q and target not in visited:
         priority, u = heapq.heappop(Q)
         if u in visited:
             continue
         visited.add(u)
-        if u == target:
-            break
         uRow, uCol = u
 
         for vRow, vCol in getNeighbors(uRow, uCol, h, w):
             v = (vRow, vCol)
-            if not isVertex(pix[vCol, vRow]):
-                continue
-            if v not in visited:
+            if v not in visited and isVertex(pix[vCol, vRow]):
                 d[v] = d[u] + 1
                 prev[v] = u
                 f = d[v] + heuristic(v,target)
